@@ -5,7 +5,7 @@ using WSUniversalLib;
 namespace UnitTests
 {
     [TestClass]
-    public class EasyTest
+    public class Test
     {
         [TestMethod]
         public void GetQuantityForProduct()
@@ -113,6 +113,39 @@ namespace UnitTests
             int actual, expected;
             expected = 190;
             actual = Calculation.GetQuantityForProduct(3, 1, 15, 20, 4.5f);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void GetExtraValueProductHard()
+        {
+            int actual, expected;
+            expected = 1141982000;
+            actual = Calculation.GetQuantityForProduct(3, 1, 15, 200000000000, 45);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void GetExtraNegativeValueProduct()
+        {
+            int actual, expected;
+            expected = -1;
+            actual = Calculation.GetQuantityForProduct(3, 1, 15, -200000000000, 45);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void GetExtraProductMaterialTypeHard()
+        {
+            int actual, expected;
+            expected = -1;
+            actual = Calculation.GetQuantityForProduct(3, 1000000, 15, 20, 45);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void GetExtraNegativeProductMaterialTypeHard()
+        {
+            int actual, expected;
+            expected = -1;
+            actual = Calculation.GetQuantityForProduct(3, -1000000, 150, 200.1f, 450.2f);
             Assert.AreEqual(expected, actual);
         }
     }
